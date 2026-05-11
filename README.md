@@ -1,3 +1,9 @@
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![dbt](https://img.shields.io/badge/dbt-Analytics-orange)
+![DuckDB](https://img.shields.io/badge/DuckDB-Warehouse-yellow)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
+![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/restaurant_ci.yml/badge.svg)
+
 # Restaurant Analytics Platform
 
 A personal analytics engineering and business intelligence project built to improve my practical experience with data warehousing, dbt, machine learning, dashboard development, and modern data workflows.
