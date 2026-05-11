@@ -1,0 +1,79 @@
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environments
+# =========================
+
+.venv/
+venv/
+env/
+
+# Conda
+.conda/
+conda-meta/
+
+# =========================
+# Jupyter
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+# Environment variables
+# =========================
+
+.env
+
+# =========================
+# Database files
+# =========================
+
+database/*.duckdb
+database/*.wal
+
+# =========================
+# Generated ML models
+# =========================
+
+ml/models/*.pkl
+
+# =========================
+# Streamlit cache
+# =========================
+
+.streamlit/secrets.toml
+
+# =========================
+# dbt artifacts
+# =========================
+
+dbt/**/target/
+dbt/**/logs/
+dbt/**/dbt_packages/
+
+# =========================
+# VS Code
+# =========================
+
+.vscode/
+
+# =========================
+# Mac / Windows system files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.log
