@@ -1,0 +1,61 @@
+name: Restaurant Analytics CI
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install dbt-duckdb scikit-learn joblib faker
+
+      - name: Generate synthetic restaurant data
+        run: python src/generate_data.py
+
+      - name: Run ingestion pipeline
+        run: python main.py
+
+      - name: Create dbt profiles directory
+        run: mkdir -p ~/.dbt
+
+      - name: Create dbt profile
+        run: |
+          cat <<EOF > ~/.dbt/profiles.yml
+          restaurant_analytics_dbt:
+            target: dev
+
+            outputs:
+              dev:
+                type: duckdb
+                path: ../../database/restaurant_warehouse.duckdb
+                threads: 4
+          EOF
+
+      - name: Run dbt models
+        working-directory: dbt/restaurant_analytics_dbt
+        run: dbt run
+
+      - name: Run dbt tests
+        working-directory: dbt/restaurant_analytics_dbt
+        run: dbt test
+
+      - name: Train machine learning model
+        run: python ml/train_model.py
