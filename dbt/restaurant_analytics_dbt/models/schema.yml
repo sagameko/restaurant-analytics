@@ -1,0 +1,82 @@
+version: 2
+
+models:
+
+  - name: stg_orders
+    description: Cleaned restaurant order staging table.
+
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: order_timestamp
+        tests:
+          - not_null
+
+      - name: net_revenue
+        tests:
+          - not_null
+
+      - name: profit
+        tests:
+          - not_null
+
+  - name: dim_menu_item
+    description: Restaurant menu item dimension.
+
+    columns:
+      - name: menu_item_key
+        tests:
+          - not_null
+          - unique
+
+      - name: menu_item
+        tests:
+          - not_null
+
+  - name: dim_staff
+    description: Restaurant staff dimension.
+
+    columns:
+      - name: staff_key
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_date
+    description: Date dimension table.
+
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_orders
+    description: Central restaurant order fact table.
+
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: date_key
+        tests:
+          - not_null
+
+      - name: menu_item_key
+        tests:
+          - not_null
+
+      - name: staff_key
+        tests:
+          - not_null
+
+      - name: net_revenue
+        tests:
+          - not_null
+
+      - name: profit
+        tests:
+          - not_null
